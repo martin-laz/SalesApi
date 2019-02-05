@@ -18,7 +18,7 @@ class Order{
                    o.id, o.email, o.total_price, o.line_items
               FROM
                   " . $this->table_name . " o
-              WHERE o.email=" .$data['customer'];
+              WHERE o.email=\"" .$data['customer']."\"";
 
       } elseif(isset($data['variant'])) {
 
