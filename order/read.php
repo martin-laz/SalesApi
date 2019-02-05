@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 include_once '../objects/order.php';
 
-// instantiate database and product object
+// instantiate database and order object
 $database = new Database();
 $db = $database->getConnection();
 
@@ -34,7 +34,7 @@ elseif (!empty($_GET["variant_id"])) {
 }
 
  $data = array('customer' => $customerInput, 'variant' => $variantInput);
-// query products
+// query orders
 $stmt = $order->read($data);
 
 $num = $stmt->rowCount();
@@ -70,7 +70,7 @@ if($num>0){
     // set response code - 200 OK
     http_response_code(200);
 
-    // show products data in json format
+    // show orders data in json format
     echo json_encode($orders_arr);
 }
 else{
@@ -78,9 +78,9 @@ else{
     // set response code - 404 Not found
     http_response_code(404);
 
-    // tell the user no products found
+    // tell the user no orders found
     echo json_encode(
-        array("message" => "No products found.")
+        array("message" => "No orders found.")
     );
 }
 function getMeanAverage($array) {
